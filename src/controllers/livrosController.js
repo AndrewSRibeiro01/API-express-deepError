@@ -9,7 +9,7 @@ class LivroController {
         .exec();
       res.status(200).json(livrosResultado);
     } catch (error) {
-      next(erro);
+      next(error);
     }
   };
 
@@ -63,6 +63,7 @@ class LivroController {
     }
   };
 
+  // eslint-disable-next-line no-unused-vars
   static listarLivroPorEditora = async (req, res, next) => {
     try {
       const editora = req.query.editora;
