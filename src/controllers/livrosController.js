@@ -79,11 +79,16 @@ class LivroController {
   };
 
   // eslint-disable-next-line no-unused-vars
-  static listarLivroPorEditora = async (req, res, next) => {
+  static listarLivroPorFiltro = async (req, res, next) => {
     try {
-      const editora = req.query.editora;
+      const { editora, titulo } = req.query;
 
-      const livrosResultados = await livros.find({ "editora": editora });
+      const busca = {};
+
+      if (editora) busca.editora = editora;
+      if (titulo) busca.titulo = titulo;
+
+      const livrosResultados = await livros.find(busca);
       res.status(200).send(livrosResultados);
 
     } catch (error) {
